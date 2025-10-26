@@ -16,8 +16,8 @@ export default function Navbar() {
     }, []);
 
     return (
-        <header className="sticky top-0 z-50 bg-white/90 px-3 backdrop-blur">
-            <div className="container mx-auto">
+        <header className="sticky top-0 z-50 bg-white/90 backdrop-blur">
+            <div className="container mx-auto px-5 w-full">
                 <nav className="grid w-full grid-cols-3 items-center justify-center gap-2 py-3">
                     <div className="flex items-center justify-start">
                         <Link href="#" className="flex items-center md:hidden">
@@ -72,7 +72,7 @@ export default function Navbar() {
                         <div className="flex items-center gap-2 md:hidden">
                             <Link
                                 href="/registerpages/identity"
-                                className="inline-flex h-9 w-full shrink-0 items-center justify-center rounded-md border text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                                className="inline-flex h-9 p-3 shrink-0 items-center justify-center rounded-md border text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                             >
                                 สมัครสมาชิก
                             </Link>
@@ -89,7 +89,7 @@ export default function Navbar() {
 
                         <Link
                             href="#contact"
-                            className="hidden h-9 items-center rounded-md bg-emerald-500 px-4 text-sm font-medium text-white hover:bg-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:outline-none md:inline-flex"
+                            className="hidden h-9 items-center  justify-end mx-auto rounded-md bg-emerald-500 px-4 text-sm font-medium text-white hover:bg-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:outline-none md:inline-flex"
                         >
                             ติดต่อเรา
                         </Link>

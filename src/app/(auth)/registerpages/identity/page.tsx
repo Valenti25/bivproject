@@ -44,7 +44,7 @@ export default function RegisterServicePage() {
         <span>1/4</span>
       </div>
 
-      <form method="post" encType="multipart/form-data" className="space-y-12">
+      <form method="post" encType="multipart/form-data" className="space-y-8">
         <div>
           <FieldLabel className="text-base">รูปบัตรประชาชน</FieldLabel>
           <FieldDescription className='mb-4'>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
@@ -78,7 +78,7 @@ export default function RegisterServicePage() {
             control={control}
             render={({ field }) => (
               <Select value={field.value} onValueChange={field.onChange}>
-                <SelectTrigger className="h-12 w-full rounded-sm px-3 py-6">
+                <SelectTrigger className="w-full rounded-sm px-3 py-5.5">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
