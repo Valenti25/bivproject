@@ -31,9 +31,9 @@ export default function Navbar() {
                             <span className="font-semibold">Brand</span>
                         </Link>
 
-                        <Link href="#" className="ml-0 hidden items-center md:flex">
+                        <Link href="/landingpage" className="ml-0 hidden items-center md:flex">
                             {/* <Image
-                src="/images/inblox.svg"
+                src="/images/"
                 alt="Brand"
                 width={28}
                 height={28}
@@ -68,13 +68,13 @@ export default function Navbar() {
                         </ul>
                     </div>
 
-                    <div className="flex items-center justify-end">
+                    <div className="flex items-center">
                         <div className="flex items-center gap-2 md:hidden">
                             <Link
-                                href="#contact"
-                                className="inline-flex h-9 w-full items-center justify-center rounded-md border px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                                href="/registerpages/identity"
+                                className="inline-flex h-9 w-full shrink-0 items-center justify-center rounded-md border text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
                             >
-                                ติดต่อเรา
+                                สมัครสมาชิก
                             </Link>
                             <button
                                 type="button"

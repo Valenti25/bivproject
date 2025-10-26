@@ -1,106 +1,133 @@
+'use client';
+
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-// import { z } from "zod";
-// import { useForm } from "react-hook-form"
-import {
-  // Field,
-  FieldDescription,
-  FieldLabel,
-} from "@/components/ui/field"
-import Image from "next/image"
-// import { useState } from "react"
-export const metadata = {
-  robots: { index: false, follow: true },
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { FieldDescription, FieldLabel } from '@/components/ui/field';
+import Image from 'next/image';
+import { Progress } from '@/components/ui/progress';
+import { ArrowLeftIcon } from 'lucide-react';
+import { useForm, Controller } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+type FormType = {
+    idCardFront: FileList | null;
+    idCardFront2: FileList | null;
+    licenseType: string;
+    agency1: string;
+    agency2: string;
+    agency3: string;
+    selfieWithId: FileList | null;
 };
 
 export default function RegisterServicePage() {
-  return (
-    <div className="container px-3 flex flex-col justify-center">
+    const { register, control } = useForm<FormType>({
+        defaultValues: {
+            idCardFront: null,
+            idCardFront2: null,
+            licenseType: '',
+            agency1: '',
+            agency2: '',
+            agency3: '',
+            selfieWithId: null,
+        },
+    });
 
-      <div className="mb-3 flex w-full items-center justify-between">
-        <div className="flex justify-start">
-          <div className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-amber-400 text-black">d</div>
+    return (
+        <div className="container flex flex-col justify-center px-3 pb-24">
+            <div className="mt-3 mb-3 flex w-full items-center justify-between">
+                <Link href="/registerpages/personalvehicle">
+                    <Button type="button" className="h-[40px] w-[40px] shrink-0 cursor-pointer rounded-full bg-black text-white" onClick={() => history.back()}>
+                        <ArrowLeftIcon />
+                    </Button>
+                </Link>
+                <Progress className="mx-3 h-3" value={100} />
+                <span>4/4</span>
+            </div>
+
+            <form method="post" encType="multipart/form-data" className="space-y-6">
+                <div>
+                    <FieldLabel className="text-base">รูปบัตรประชาชน</FieldLabel>
+                    <FieldDescription>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
+                    <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
+                    <InputGroup className="mt-1 flex h-12 w-full items-center rounded-sm text-[#333333]">
+                        <InputGroupInput type="file" aria-label="อัปโหลดบัตรประชาชน" className="flex-1" {...register('idCardFront')} />
+                        <InputGroupAddon />
+                    </InputGroup>
+                </div>
+
+                <div>
+                    <FieldLabel className="text-base">รูปบัตรประชาชน</FieldLabel>
+                    <FieldDescription>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
+                    <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
+                    <InputGroup className="mt-1 flex h-12 w-full items-center rounded-sm text-[#333333]">
+                        <InputGroupInput type="file" aria-label="อัปโหลดบัตรประชาชน (ชุดที่ 2)" className="flex-1" {...register('idCardFront2')} />
+                        <InputGroupAddon />
+                    </InputGroup>
+                </div>
+
+                <div className="my-3 flex items-center justify-center">
+                    <span className="h-[1px] w-full bg-[#62748e]/20" />
+                    <h1 className="w-full px-3">ข้อมูลใบอนุญาติ</h1>
+                    <span className="h-[1px] w-full bg-[#62748e]/20" />
+                </div>
+
+                <div className="w-full space-y-3">
+                    <FieldLabel className="text-base">ประเภทใบอนุญาต</FieldLabel>
+                    <Controller
+                        name="licenseType"
+                        control={control}
+                        render={({ field }) => (
+                            <Select value={field.value} onValueChange={field.onChange}>
+                                <SelectTrigger className="h-12 w-full rounded-sm px-3 py-6">
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="engineering">Engineering</SelectItem>
+                                    <SelectItem value="design">Design</SelectItem>
+                                    <SelectItem value="marketing">Marketing</SelectItem>
+                                    <SelectItem value="sales">Sales</SelectItem>
+                                    <SelectItem value="support">Customer Support</SelectItem>
+                                    <SelectItem value="hr">Human Resources</SelectItem>
+                                    <SelectItem value="finance">Finance</SelectItem>
+                                    <SelectItem value="operations">Operations</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        )}
+                    />
+
+                    <FieldLabel className="text-base">หน่วยงานที่ออกใบอนุญาต</FieldLabel>
+                    <InputGroup className="flex h-12 items-center text-[#333333]">
+                        <InputGroupInput type="search" placeholder="หน่วยงานที่ออกใบอนุญาต" {...register('agency1')} />
+                        <InputGroupAddon />
+                    </InputGroup>
+
+                    <FieldLabel className="text-base">หน่วยงานที่ออกใบอนุญาต</FieldLabel>
+                    <InputGroup className="flex h-12 items-center text-[#333333]">
+                        <InputGroupInput type="search" placeholder="หน่วยงานที่ออกใบอนุญาต" {...register('agency2')} />
+                        <InputGroupAddon />
+                    </InputGroup>
+
+                    <FieldLabel className="text-base">หน่วยงานที่ออกใบอนุญาต</FieldLabel>
+                    <InputGroup className="flex h-12 items-center text-[#333333]">
+                        <InputGroupInput type="search" placeholder="หน่วยงานที่ออกใบอนุญาต" {...register('agency3')} />
+                        <InputGroupAddon />
+                    </InputGroup>
+
+                    <FieldLabel className="text-base">รูปถ่ายคู่บัตรประชาชน</FieldLabel>
+                    <FieldDescription>โปรดถือบัตรประชาชนของตนเองและถ่ายให้เห็นรายละเอียดชัดเจน</FieldDescription>
+                    <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
+                    <InputGroup className="mt-1 flex h-12 w-full items-center rounded-sm text-[#333333]">
+                        <InputGroupInput type="file" aria-label="อัปโหลดรูปคู่บัตร" className="flex-1" {...register('selfieWithId')} />
+                        <InputGroupAddon />
+                    </InputGroup>
+                </div>
+
+                <div className="fixed inset-x-0 bottom-0 z-50 items-center justify-center border-t border-black/5 border-t-black/10 bg-white px-3 py-6">
+                    <Button type="submit" className="h-12 w-full cursor-pointer rounded-lg bg-green-500 text-base font-medium shadow-lg transition-all hover:bg-green-600">
+                        Next
+                    </Button>
+                </div>
+            </form>
         </div>
-        <div className="mx-2 flex h-4 w-full items-center justify-center rounded-full border bg-yellow-200">
-          <div className="text-black">wwwwwwwww</div>
-        </div>
-        <span className="bg-amber-700">1/2</span>
-      </div>
-
-      {/* <form> */}
-      <div>
-        <FieldLabel className='text-base'>รูปบัตรประชาชน</FieldLabel>
-        <FieldDescription>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
-        <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
-        <InputGroup className="mt-1 flex items-center rounded-sm text-[#333333] w-full">
-          <InputGroupInput type="file" placeholder="จังหวัด" aria-label="ค้นหา" className="flex-1" />
-          <InputGroupAddon />
-        </InputGroup>
-      </div>
-
-      <div>
-        <FieldLabel className='text-base'>รูปบัตรประชาชน</FieldLabel>
-        <FieldDescription>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
-        <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
-        <InputGroup className="mt-1 flex items-center rounded-sm text-[#333333] w-full"> {/* CHANGED */}
-          <InputGroupInput type="file" placeholder="จังหวัด" aria-label="ค้นหา" className="flex-1" /> {/* CHANGED */}
-          <InputGroupAddon />
-        </InputGroup>
-      </div>
-
-      <div className="flex items-center my-3 justify-center">
-        <span className="h-[1px] w-full bg-[#62748e]/20" />
-        <h1 className="mx-3 w-full">ข้อมูลใบอนุญาติ</h1>
-        <span className="h-[1px] w-full bg-[#62748e]/20" />
-      </div>
-
-      <div className="w-full space-y-3">
-        <Select>
-          <SelectTrigger className="w-full rounded-sm">
-            <SelectValue placeholder="เลือกประเภทใบอนุญาต" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="engineering">Engineering</SelectItem>
-            <SelectItem value="design">Design</SelectItem>
-            <SelectItem value="marketing">Marketing</SelectItem>
-            <SelectItem value="sales">Sales</SelectItem>
-            <SelectItem value="support">Customer Support</SelectItem>
-            <SelectItem value="hr">Human Resources</SelectItem>
-            <SelectItem value="finance">Finance</SelectItem>
-            <SelectItem value="operations">Operations</SelectItem>
-          </SelectContent>
-        </Select>
-
-        <InputGroup className="flex items-center text-[#333333]">
-          <InputGroupInput type="search" placeholder="หน่วยงานที่ออกใบอนุญาต" />
-          <InputGroupAddon />
-        </InputGroup>
-
-        <InputGroup className="flex items-center text-[#333333]">
-          <InputGroupInput type="search" placeholder="หน่วยงานที่ออกใบอนุญาต" />
-          <InputGroupAddon />
-        </InputGroup>
-
-        <InputGroup className="flex items-center text-[#333333]">
-          <InputGroupInput type="search" placeholder="หน่วยงานที่ออกใบอนุญาต" />
-          <InputGroupAddon />
-        </InputGroup>
-
-        <FieldLabel className='text-base'>รูปถ่ายคู่บัตรประชาชน</FieldLabel>
-        <FieldDescription>โปรดถือบัตรประชาชนของตนเองและถ่ายให้เห็นรายละเอียดชัดเจน</FieldDescription>
-        <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
-        <InputGroup className="mt-1 flex items-center rounded-sm text-[#333333] w-full">
-          <InputGroupInput type="file" placeholder="จังหวัด" aria-label="ค้นหา" className="flex-1" />
-          <InputGroupAddon />
-        </InputGroup>
-      </div>
-      {/* </form> */}
-    </div>
-  );
+    );
 }
