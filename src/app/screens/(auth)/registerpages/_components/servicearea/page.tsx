@@ -1,13 +1,13 @@
 'use client';
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FieldDescription, FieldLabel } from '@/components/ui/field';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/app/components/ui/input-group';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/components/ui/select';
+import { FieldDescription, FieldLabel } from '@/app/components/ui/field';
 import Image from 'next/image';
-import { Progress } from '@/components/ui/progress';
+import { Progress } from '@/app/components/ui/progress';
 import { ArrowLeftIcon } from 'lucide-react';
 import { useForm, Controller } from 'react-hook-form';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/components/ui/button';
 import Link from 'next/link';
 type FormType = {
   idCardFront: FileList | null;

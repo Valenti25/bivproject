@@ -1,13 +1,13 @@
 'use client';
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FieldDescription, FieldLabel } from '@/components/ui/field';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/app/components/ui/input-group';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/components/ui/select';
+import { FieldDescription, FieldLabel } from '@/app/components/ui/field';
 import Image from 'next/image';
-import { Progress } from '@/components/ui/progress';
+import { Progress } from '@/app/components/ui/progress';
 import { ArrowLeftIcon } from 'lucide-react';
 import { useForm, Controller } from 'react-hook-form';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/components/ui/button';
 import Link from 'next/link';
 type FormType = {
   idCardFront: FileList | null;
@@ -35,19 +35,19 @@ export default function RegisterServicePage() {
   return (
     <div className="container flex flex-col justify-center px-3 pb-24">
       <div className="mb-3 mt-3 flex w-full items-center justify-between">
-        <Link href="/landingpage">
+        <Link href="/registerpages/servicearea">
           <Button type="button" className="h-[40px] w-[40px] shrink-0 cursor-pointer rounded-full bg-black text-white" onClick={() => history.back()}>
             <ArrowLeftIcon />
           </Button>
         </Link>
-        <Progress className="mx-3 h-3" value={33} />
-        <span>1/4</span>
+        <Progress className="mx-3 h-3" value={88} />
+        <span>3/4</span>
       </div>
 
-      <form method="post" encType="multipart/form-data" className="space-y-8">
+      <form method="post" encType="multipart/form-data" className="space-y-6">
         <div>
           <FieldLabel className="text-base">รูปบัตรประชาชน</FieldLabel>
-          <FieldDescription className='mb-4'>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
+          <FieldDescription>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
           <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
           <InputGroup className="mt-1 flex h-12 w-full items-center rounded-sm text-[#333333]">
             <InputGroupInput type="file" aria-label="อัปโหลดบัตรประชาชน" className="flex-1" {...register('idCardFront')} />
@@ -57,7 +57,7 @@ export default function RegisterServicePage() {
 
         <div>
           <FieldLabel className="text-base">รูปบัตรประชาชน</FieldLabel>
-          <FieldDescription className='mb-4'>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
+          <FieldDescription>โปรดแนบไฟล์บัตรประชาชนและรูปถ่ายคู่บัตรเพื่อยืนยันตัวตน</FieldDescription>
           <Image src="/images/register-serviceimages/user_id_card.png" width={400} height={400} className="rounded-sm" alt="" />
           <InputGroup className="mt-1 flex h-12 w-full items-center rounded-sm text-[#333333]">
             <InputGroupInput type="file" aria-label="อัปโหลดบัตรประชาชน (ชุดที่ 2)" className="flex-1" {...register('idCardFront2')} />
@@ -78,7 +78,7 @@ export default function RegisterServicePage() {
             control={control}
             render={({ field }) => (
               <Select value={field.value} onValueChange={field.onChange}>
-                <SelectTrigger className="w-full rounded-sm px-3 py-5.5">
+                <SelectTrigger className="h-12 w-full rounded-sm px-3 py-6">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -121,14 +121,14 @@ export default function RegisterServicePage() {
             <InputGroupAddon />
           </InputGroup>
         </div>
-        <Link href="/registerpages/servicearea">
+
+        <Link href="/registerpages/bankaccountinformation">
           <div className="fixed inset-x-0 py-6 items-center justify-center bottom-0 z-50 border-black/5 bg-white border-t-black/10 border-t px-3 ">
             <Button type="submit" className="h-12 bg-green-500 w-full cursor-pointer hover:bg-green-600 rounded-lg text-base font-medium shadow-lg transition-all">
               Next
             </Button>
           </div>
         </Link>
-
       </form>
     </div>
   );
