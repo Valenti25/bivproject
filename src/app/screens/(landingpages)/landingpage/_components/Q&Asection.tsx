@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/app/components/ui/accordion';
 import { useState } from 'react';
 
 const STEPS = [
